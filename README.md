@@ -3,7 +3,7 @@
 A Big Brother Simulator based off the TV show. Given user inputted characters will run simulations and give you a winner.
 
 TODO LIST:
-- [ ] Nomination Ceremony Relationships 
+- [x] Nomination Ceremony Relationships 
   - If you were nominated you're opinion of the HOH goes down by 2 (-2)
   - If you were not nominated you're opinion of the HOH goes up by 1 (+1)
 - [ ] Veto Draw Ceremony
