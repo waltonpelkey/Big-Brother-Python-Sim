@@ -1,4 +1,3 @@
-from operator import contains
 import random
 
 # Creates player object to be defined later
