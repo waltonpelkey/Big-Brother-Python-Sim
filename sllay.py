@@ -5,10 +5,9 @@ import random
 from tkinter import W
 from unicodedata import name
 
-n = 10
-
 # this class gives all the players in the game and gives them their attributes in the game
-
+# Creates player object to be defined later
+    # Player: Name, Competition Ability, Gender, ID, Relationship Values
 class Player():
 
     name = ""
@@ -18,6 +17,7 @@ class Player():
     ID = 0
     relationships = {}
 
+    # Allows for player objects to be made
     def __init__(self, name, comp_ability, gender, ID, relationships):
         self.name = name
         self.comp_ability = comp_ability
@@ -25,12 +25,14 @@ class Player():
         self.ID = ID
         self.relationships = relationships
 
+    # Allows for player relationships to be updated
     def update_relationships(self, new_relationships):
         self.relationships = new_relationships
 
 
-# player info: name, compitition ability, gender, ID, relationship values
 
+
+# Defining all ten players (change to input later)
 player1 = Player("Paula", 2, "female", 1, {})
 player2 = Player("Anthony", 1, "male", 2, {})
 player3 = Player("Leonard", 5, "male", 3, {})
@@ -39,9 +41,10 @@ player5 = Player("Nico", 3, "male", 5, {})
 player6 = Player("Alex", 3, "female", 6, {})
 player7 = Player("Izabella", 5, "female", 7, {})
 player8 = Player("Ken", 4, "other", 8, {})
-player9 = Player("Lavi", 10000000, "male", 9, {})
+player9 = Player("Lavi", 1, "male", 9, {})
 player10 = Player("Axe", 2, "other", 10, {})
 
+# Defining all relationship values between all ten players (starts at 0 by default)
 player1.update_relationships({player2: 0, player3: 0, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player9: 0, player10: 0})
 player2.update_relationships({player1: 0, player3: 0, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player9: 0, player10: 0})
 player3.update_relationships({player1: 0, player2: 0, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player9: 0, player10: 0})
@@ -50,39 +53,39 @@ player5.update_relationships({player1: 0, player2: 0, player3: 0, player4: 0, pl
 player6.update_relationships({player1: 0, player2: 0, player3: 0, player4: 0, player5: 0, player7: 0, player8: 0, player9: 0, player10: 0})
 player7.update_relationships({player1: 0, player2: 0, player3: 0, player4: 0, player5: 0, player6: 0, player8: 0, player9: 0, player10: 0})
 player8.update_relationships({player1: 0, player2: 0, player3: 0, player4: 0, player5: 0, player6: 0, player7: 0, player9: 0, player10: 0})
-player9.update_relationships({player1: -10, player2: 0, player3: -10, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player10: 0})
+player9.update_relationships({player1: 0, player2: 0, player3: 0, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player10: 0})
 player10.update_relationships({player1: 0, player2: 0, player3: 0, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player9: 0})
 
-
-L = [player1, player2, player3, player4, player5,
+# Full list of players to be used in functions and changed as players are eliminated
+list_of_players = [player1, player2, player3, player4, player5,
      player6, player7, player8, player9, player10]
-HCOMPTOTAL = 0
-# Loop through list of players, used to add comp abilities to randomize comp winner
-for x in L:
-    HCOMPTOTAL = x.comp_ability + HCOMPTOTAL
-    x.comp_prob = HCOMPTOTAL
 
 
-# Real ~> Real
-# Randomly chooses a number between 1 and the total of everyones comp.abilities
-a = random.randint(1, HCOMPTOTAL)
-
-# uses the randomly generated number within the range to compare to the range that each comp ability enhabits and outputs the winner of the competition
-
-# Real ~> String
-# Consumes the randomly generated integer from 1 to the comp total and checks which player it corresponds to and produces
-# a printed string declaring the HOH
-
-
+# Randomly selects a head of household based off competition ability (I think I didn't write this)
 def HOH():
-    for player in L:
-        koala = 0
-        for index in range(0, L.index(player)+1):
-            koala += L[index].comp_ability
-        if a <= koala:
+
+    # Loop through list of players, used to add comp abilities to randomize comp winner
+    HCOMPTOTAL = 0
+    for x in list_of_players:
+        HCOMPTOTAL += x.comp_ability
+        x.comp_prob = HCOMPTOTAL
+
+    # Randomly chooses a number between 1 and the total of everyones comp.abilities
+    # Uses the randomly generated number within the range to compare to the range that each comp ability enhabits and outputs the winner of the competition
+    ability_to_beat = random.randint(1, HCOMPTOTAL)
+    
+    for player in list_of_players:
+        comp_ability_var = 0
+        for index in range(0, list_of_players.index(player)+1):
+            comp_ability_var += list_of_players[index].comp_ability
+        if ability_to_beat <= comp_ability_var:
             return player
 
-def NOM1(hoh):
+
+
+
+# Old (single) nomination function (waiting for approval from lead dev to delete)
+""" def NOM1(hoh):
     lowest_relationship = min(hoh.relationships.values())
     lowest_list=list(hoh.relationships.values())
     res = lowest_list.count(lowest_relationship)
@@ -97,19 +100,25 @@ def NOM1(hoh):
     elif res == 1: 
         for player in hoh.relationships.keys():
             if hoh.relationships[player] == lowest_relationship:
-                return player
+                return player """
 
-# print(NOM1(HOH()).name)
 
+
+
+# Takes in the head of household and returns a list containing their two nominations based off relationship values
 def NOMS(hoh):
 
+    # Finds the amount of people who share the lowest relationship value
     lowest_relationship = min(hoh.relationships.values())
     lowest_list=list(hoh.relationships.values())
-    res = lowest_list.count(lowest_relationship)
+    num_of_lowest_relationships = lowest_list.count(lowest_relationship)
+
+    # Creates lists to be used later in definitions
     possible_noms = []
     noms = []
     
-    def multiple_lowest_select(player, noms, hoh):
+    # Function to select nomination if there are multiple people with lowest relationship value
+    def multiple_lowest_select(noms, hoh):
 
         for player in hoh.relationships.keys():
 
@@ -123,61 +132,74 @@ def NOMS(hoh):
         while random_nom1 == random_nom2:
 
             random_nom2 = random.randrange(0, (len(possible_noms)))
-            print("check")
         
         noms.append(possible_noms[random_nom1])
         noms.append(possible_noms[random_nom2])
 
-    def exactly_two_select(player, noms, hoh):
+    # Function to select all nominees in the list (only use if there are exactly one or two)
+    def select_all_lowest(noms, hoh):
         for player in hoh.relationships.keys():
 
             if hoh.relationships[player] == lowest_relationship:
 
                 noms.append(player)
-
-    def exactly_one_select(player,noms,hoh):
+    
+    # Function to select the second nomination if there was exactly one then there was multiple lowest
+    def after_one_select_multiple(noms, hoh):
         for player in hoh.relationships.keys():
 
             if hoh.relationships[player] == lowest_relationship:
 
-                noms.append(player)
+                possible_noms.append(player)
 
-    if res == 2:
+        random_nom = random.randrange(0, (len(possible_noms)))
+        
+        noms.append(possible_noms[random_nom])
 
-        exactly_two_select(player,noms,hoh)
+
+    # Checks if there are exactly two people with the lowest relationship value, calls appropriate function
+    if num_of_lowest_relationships == 2:
+
+        select_all_lowest(noms,hoh)
         return noms
 
-    elif res > 1: 
+    # Checks if there are more than one person with the lowest relationship value, calls appropriate function
+    elif num_of_lowest_relationships > 1: 
 
-        multiple_lowest_select(player, noms, hoh)
+        multiple_lowest_select(noms,hoh)
         return noms
 
-    elif res == 1:
+    # Checks if there is exactly one person with the lowest relationship value, calls appropriate function
+    elif num_of_lowest_relationships == 1:
 
-        exactly_one_select(player,noms,hoh)
+        select_all_lowest(noms,hoh)
         
-        lowest_relationship += 1
-        res = lowest_list.count(lowest_relationship)
+        # Selects the second nomination
+        while len(noms) != 2:
 
-        if res == 2:
+            # Increases relationship by one every loop to find the second highest relationship value
+            lowest_relationship += 1
+            num_of_lowest_relationships = lowest_list.count(lowest_relationship)
 
-            exactly_two_select(player,noms,hoh)
-            return noms
-        
-        elif res > 1:
+            # Goes through previous steps to select second person
+            if num_of_lowest_relationships == 2:
 
-            multiple_lowest_select(player,noms,hoh)
-            return noms
+                select_all_lowest(noms,hoh)
+                return noms
+            
+            elif num_of_lowest_relationships > 1:
 
-        elif res == 1:
+                # Must call a different function to select only one second nomination (multiple_lowest_select ≠ after_one_select_multiple)
+                after_one_select_multiple(noms,hoh)
+                return noms
 
-            exactly_one_select(player,noms,hoh)
-            return noms
+            elif num_of_lowest_relationships == 1:
+
+                select_all_lowest(noms,hoh)
+                return noms
 
 
-
-
-
-print(HOH().name, " is the new HOH!")
+# Function testing
+print(HOH().name, "is the new HOH!")
 nominations = NOMS(HOH())
 print(nominations[0].name, "and", nominations[1].name, "have been nominated")
