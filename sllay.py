@@ -1,11 +1,5 @@
-from ast import If
-from cmd import IDENTCHARS
-from nturl2path import pathname2url
 import random
-from tkinter import W
-from unicodedata import name
 
-# this class gives all the players in the game and gives them their attributes in the game
 # Creates player object to be defined later
     # Player: Name, Competition Ability, Gender, ID, Relationship Values
 class Player():
@@ -33,19 +27,19 @@ class Player():
 
 
 # Defining all ten players (change to input later)
-player1 = Player("Paula", 100000, "female", 1, {})
+player1 = Player("Paula", 1, "female", 1, {})
 player2 = Player("Anthony", 1, "male", 2, {})
-player3 = Player("Leonard", 5, "male", 3, {})
-player4 = Player("Krista", 4, "female", 4, {})
-player5 = Player("Nico", 3, "male", 5, {})
-player6 = Player("Alex", 3, "female", 6, {})
-player7 = Player("Izabella", 5, "female", 7, {})
-player8 = Player("Ken", 4, "other", 8, {})
+player3 = Player("Leonard", 1, "male", 3, {})
+player4 = Player("Krista", 1, "female", 4, {})
+player5 = Player("Nico", 1, "male", 5, {})
+player6 = Player("Alex", 1, "female", 6, {})
+player7 = Player("Izabella", 1, "female", 7, {})
+player8 = Player("Ken", 1, "other", 8, {})
 player9 = Player("Lavi", 1, "male", 9, {})
-player10 = Player("Axe", 2, "other", 10, {})
+player10 = Player("Axe", 1, "other", 10, {})
 
 # Defining all relationship values between all ten players (starts at 0 by default)
-player1.update_relationships({player2: -200, player3: -100, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player9: 0, player10: 0})
+player1.update_relationships({player2: 0, player3: 0, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player9: 0, player10: 0})
 player2.update_relationships({player1: 0, player3: 0, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player9: 0, player10: 0})
 player3.update_relationships({player1: 0, player2: 0, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player9: 0, player10: 0})
 player4.update_relationships({player1: 0, player2: 0, player3: 0, player5: 0, player6: 0, player7: 0, player8: 0, player9: 0, player10: 0})
