@@ -31,47 +31,27 @@ class Player():
 
 # player info: name, compitition ability, gender, ID, relationship values
 
-player1 = Player("Paula", 2, "female", 1, {
-                 'p2': 0, 'p3': 0, 'p4': 0, 'p5': 0, 'p6': 0, 'p7': 0, 'p8': 0, 'p9': 0, 'p10': 0})
+player1 = Player("Paula", 2, "female", 1, {})
+player2 = Player("Anthony", 1, "male", 2, {})
+player3 = Player("Leonard", 5, "male", 3, {})
+player4 = Player("Krista", 4, "female", 4, {})
+player5 = Player("Nico", 3, "male", 5, {})
+player6 = Player("Alex", 3, "female", 6, {})
+player7 = Player("Izabella", 5, "female", 7, {})
+player8 = Player("Ken", 4, "other", 8, {})
+player9 = Player("Lavi", 1, "male", 9, {})
+player10 = Player("Axe", 2, "other", 10, {})
 
-player2 = Player("Anthony", 1, "male", 2, {
-                 'p1': 0, 'p2': 0, 'p4': 0, 'p5': 0, 'p6': 0, 'p7': 0, 'p8': 0, 'p9': 0, 'p10': 0})
-
-player3 = Player("Leonard", 5, "male", 3, {
-                 'p1': 0, 'p2': 0, 'p3': 0, 'p5': 0, 'p6': 0, 'p7': 0, 'p8': 0, 'p9': 0, 'p10': 0})
-
-player4 = Player("Krista", 4, "female", 4, {
-                 'p2': 0, 'p3': 0, 'p4': 0, 'p5': 0, 'p6': 0, 'p7': 0, 'p8': 0, 'p9': 0, 'p10': 0})
-
-player5 = Player("Nico", 3, "male", 5, {
-                 'p1': 0, 'p2': 0, 'p3': 0, 'p4': 0, 'p6': 0, 'p7': 0, 'p8': 0, 'p9': 0, 'p10': 0})
-
-player6 = Player("Alex", 3, "female", 6, {
-                 'p1': 0, 'p2': 0, 'p3': 0, 'p4': 0, 'p5': 0, 'p7': 0, 'p8': 0, 'p9': 0, 'p10': 0})
-
-player7 = Player("Izabella", 5, "female", 7, {
-                 'p1': 0, 'p2': 0, 'p3': 0, 'p4': 0, 'p5': 0, 'p6': 0, 'p8': 0, 'p9': 0, 'p10': 0})
-
-player8 = Player("Ken", 4, "other", 8, {
-                 'p1': 0, 'p2': 0, 'p3': 0, 'p4': 0, 'p5': 0, 'p6': 0, 'p7': 0, 'p9': 0, 'p10': 0})
-
-player9 = Player("Lavi", 1, "male", 9, {
-                 'p1': 0, 'p2': 0, 'p3': 0, 'p4': 0, 'p5': 0, 'p6': 0, 'p7': 0, 'p8': 0, 'p10': 0})
-
-player10 = Player("Axe", 2, "other", 10, {
-                  'p1': 0, 'p2': 0, 'p3': 0, 'p4': 0, 'p5': 0, 'p6': 0, 'p7': 0, 'p8': 0, 'p9': 0})
-
-
-player1.update_relationships({'p1': 0, 'p2': 0, 'p3': 0, 'p4': 0, 'p5': 0, 'p6': 0, 'p7': 0, 'p8': 0, 'p9': 0})
-player2.update_relationships({'p1': 0, 'p2': 0, 'p3': 0, 'p4': 0, 'p5': 0, 'p6': 0, 'p7': 0, 'p8': 0, 'p9': 0})
-player3.update_relationships({'p1': 0, 'p2': 0, 'p3': 0, 'p4': 0, 'p5': 0, 'p6': 0, 'p7': 0, 'p8': 0, 'p9': 0})
-player4.update_relationships({'p1': 0, 'p2': 0, 'p3': 0, 'p4': 0, 'p5': 0, 'p6': 0, 'p7': 0, 'p8': 0, 'p9': 0})
-player5.update_relationships({'p1': 0, 'p2': 0, 'p3': 0, 'p4': 0, 'p5': 0, 'p6': 0, 'p7': 0, 'p8': 0, 'p9': 0})
-player6.update_relationships({'p1': 0, 'p2': 0, 'p3': 0, 'p4': 0, 'p5': 0, 'p6': 0, 'p7': 0, 'p8': 0, 'p9': 0})
-player7.update_relationships({'p1': 0, 'p2': 0, 'p3': 0, 'p4': 0, 'p5': 0, 'p6': 0, 'p7': 0, 'p8': 0, 'p9': 0})
-player8.update_relationships({'p1': 0, 'p2': 0, 'p3': 0, 'p4': 0, 'p5': 0, 'p6': 0, 'p7': 0, 'p8': 0, 'p9': 0})
-player9.update_relationships({'p1': 0, 'p2': 0, 'p3': 0, 'p4': 0, 'p5': 0, 'p6': 0, 'p7': 0, 'p8': 0, 'p9': 0})
-player10.update_relationships({'p1': 0, 'p2': 0, 'p3': 0, 'p4': 0, 'p5': 0, 'p6': 0, 'p7': 0, 'p8': 0, 'p9': 0})
+player1.update_relationships({player2: 0, player3: 0, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player9: 0, player10: 0})
+player2.update_relationships({player1: 0, player3: 0, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player9: 0, player10: 0})
+player3.update_relationships({player1: 0, player2: 0, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player9: 0, player10: 0})
+player4.update_relationships({player1: 0, player2: 0, player3: 0, player5: 0, player6: 0, player7: 0, player8: 0, player9: 0, player10: 0})
+player5.update_relationships({player1: 0, player2: 0, player3: 0, player4: 0, player6: 0, player7: 0, player8: 0, player9: 0, player10: 0})
+player6.update_relationships({player1: 0, player2: 0, player3: 0, player4: 0, player5: 0, player7: 0, player8: 0, player9: 0, player10: 0})
+player7.update_relationships({player1: 0, player2: 0, player3: 0, player4: 0, player5: 0, player6: 0, player8: 0, player9: 0, player10: 0})
+player8.update_relationships({player1: 0, player2: 0, player3: 0, player4: 0, player5: 0, player6: 0, player7: 0, player9: 0, player10: 0})
+player9.update_relationships({player1: 0, player2: 0, player3: 0, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player10: 0})
+player10.update_relationships({player1: 0, player2: 0, player3: 0, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player9: 0})
 
 
 L = [player1, player2, player3, player4, player5,
@@ -97,25 +77,27 @@ a = random.randint(1, HCOMPTOTAL)
 def HOH():
     for player in L:
         koala = 0
-        for index in range(0, L.index(player)):
+        for index in range(0, L.index(player)+1):
             koala += L[index].comp_ability
         if a <= koala:
             print(f'{player.name} is the new HOH!')
             return player
 
-
-# find lowest relationship: min(hoh.relationships.values())
 def NOM1(hoh):
     lowest_relationship = min(hoh.relationships.values())
+    lowest_list=list(hoh.relationships.values())
+    res = lowest_list.count(lowest_relationship)
     possible_noms = []
 
-    if hoh.relationships.values().counter(lowest_relationship) > 1:
+    if res > 1:
         for player in hoh.relationships.keys():
             if hoh.relationships[player] == lowest_relationship:
                 possible_noms.append(player)
-        random_nom = random.randrange(0, (possible_noms.count() + 1))
-        
+        random_nom = random.randrange(0, (len(possible_noms) + 1))
+        return possible_noms[random_nom]
+    elif res == 1: 
+        for player in hoh.relationships.keys():
+            if hoh.relationships[player] == lowest_relationship:
+                return player
 
-        
-
-
+print(NOM1(HOH()).name)
