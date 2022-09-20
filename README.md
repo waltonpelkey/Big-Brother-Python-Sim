@@ -3,7 +3,7 @@
 A Big Brother Simulator based off the TV show. Given user inputted characters will run simulations and give you a winner.
 
 TODO LIST:
-- [x] Nomination Ceremony Relationships 
+- [ ] Nomination Ceremony Relationships 
   - If you were nominated you're opinion of the HOH goes down by 2 (-2)
   - If you were not nominated you're opinion of the HOH goes up by 1 (+1)
 - [ ] Veto Draw Ceremony
@@ -16,3 +16,10 @@ TODO LIST:
 - [ ] Veto Competition
   - Same as the HOH where it totals all players comp abilities playing the veto and then picks a number between the range and associates that number with a winner.
   - This means we should probably at the Veto Draw ceremony define all the players in the competition within a list
+- [ ] Veto Ceremony
+  - 3 Potential Cases for Veto Winner: HOH, NOM, Other
+  - Cases
+  - HOH:  
+  - if the players on the block are their lowest two relationships the HOH wins the veto they will not change their nominations
+  - if there is a tie for lowest two relationships within the HOH's relationships then the HOH will randomly choose between changing the nomination or keeping it the same 50/50, if the HOH randomly chooses to change the nominations then it will randomly choose to replace 
+  - 
