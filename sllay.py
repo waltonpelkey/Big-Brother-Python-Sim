@@ -33,7 +33,7 @@ class Player():
 
 
 # Defining all ten players (change to input later)
-player1 = Player("Paula", 2, "female", 1, {})
+player1 = Player("Paula", 100000, "female", 1, {})
 player2 = Player("Anthony", 1, "male", 2, {})
 player3 = Player("Leonard", 5, "male", 3, {})
 player4 = Player("Krista", 4, "female", 4, {})
@@ -45,7 +45,7 @@ player9 = Player("Lavi", 1, "male", 9, {})
 player10 = Player("Axe", 2, "other", 10, {})
 
 # Defining all relationship values between all ten players (starts at 0 by default)
-player1.update_relationships({player2: 0, player3: 0, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player9: 0, player10: 0})
+player1.update_relationships({player2: -200, player3: -100, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player9: 0, player10: 0})
 player2.update_relationships({player1: 0, player3: 0, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player9: 0, player10: 0})
 player3.update_relationships({player1: 0, player2: 0, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player9: 0, player10: 0})
 player4.update_relationships({player1: 0, player2: 0, player3: 0, player5: 0, player6: 0, player7: 0, player8: 0, player9: 0, player10: 0})
@@ -203,3 +203,18 @@ def NOMS(hoh):
 print(HOH().name, "is the new HOH!")
 nominations = NOMS(HOH())
 print(nominations[0].name, "and", nominations[1].name, "have been nominated")
+
+# New Problems Now That We Have Solved These
+# 1. Nomination Ceremony Relationships 
+    # If you were nominated you're opinion of the HOH goes down by 2 
+    # If you were not nominated you're opinion of the HOH goes up by 1
+# 2. Veto Draw Ceremony
+# At the veto ceremony the players draw out of a hat to choose who is competing in the veto competition
+# Six players compete in every veto competition, 3 of those being the HOH, The 2 nominees, And three other randomly selected houseguests
+# When randomly selecting the HOH draws out of the hat, then the two nominees. There is one chip in the bag which contains something called Houseguests Choice
+# When Houseguests Choice is chosen the player who drew it picks the person who they have the highest relationship with to compete in the challenge
+# When someone picks using Houseguests Choice the chosen player gets +1 relationship with the person who chose them
+# Note (There is only one Houseguest Choice in the bag so it can only be selected once)
+# 3. Veto Competition
+# Same as the HOH where it totals all players comp abilities playing the veto and then picks a number between the range and associates that number with a winner. 
+# This means we should probably at the Veto Draw ceremony define all the players in the competition within a list
