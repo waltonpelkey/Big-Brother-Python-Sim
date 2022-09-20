@@ -39,7 +39,7 @@ player5 = Player("Nico", 3, "male", 5, {})
 player6 = Player("Alex", 3, "female", 6, {})
 player7 = Player("Izabella", 5, "female", 7, {})
 player8 = Player("Ken", 4, "other", 8, {})
-player9 = Player("Lavi", 1, "male", 9, {})
+player9 = Player("Lavi", 10000000, "male", 9, {})
 player10 = Player("Axe", 2, "other", 10, {})
 
 player1.update_relationships({player2: 0, player3: 0, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player9: 0, player10: 0})
@@ -50,7 +50,7 @@ player5.update_relationships({player1: 0, player2: 0, player3: 0, player4: 0, pl
 player6.update_relationships({player1: 0, player2: 0, player3: 0, player4: 0, player5: 0, player7: 0, player8: 0, player9: 0, player10: 0})
 player7.update_relationships({player1: 0, player2: 0, player3: 0, player4: 0, player5: 0, player6: 0, player8: 0, player9: 0, player10: 0})
 player8.update_relationships({player1: 0, player2: 0, player3: 0, player4: 0, player5: 0, player6: 0, player7: 0, player9: 0, player10: 0})
-player9.update_relationships({player1: 0, player2: 0, player3: 0, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player10: 0})
+player9.update_relationships({player1: -10, player2: 0, player3: -10, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player10: 0})
 player10.update_relationships({player1: 0, player2: 0, player3: 0, player4: 0, player5: 0, player6: 0, player7: 0, player8: 0, player9: 0})
 
 
@@ -80,7 +80,6 @@ def HOH():
         for index in range(0, L.index(player)+1):
             koala += L[index].comp_ability
         if a <= koala:
-            print(f'{player.name} is the new HOH!')
             return player
 
 def NOM1(hoh):
@@ -100,4 +99,85 @@ def NOM1(hoh):
             if hoh.relationships[player] == lowest_relationship:
                 return player
 
-print(NOM1(HOH()).name)
+# print(NOM1(HOH()).name)
+
+def NOMS(hoh):
+
+    lowest_relationship = min(hoh.relationships.values())
+    lowest_list=list(hoh.relationships.values())
+    res = lowest_list.count(lowest_relationship)
+    possible_noms = []
+    noms = []
+    
+    def multiple_lowest_select(player, noms, hoh):
+
+        for player in hoh.relationships.keys():
+
+            if hoh.relationships[player] == lowest_relationship:
+
+                possible_noms.append(player)
+
+        random_nom1 = random.randrange(0, (len(possible_noms)))
+        random_nom2 = random.randrange(0, (len(possible_noms)))
+
+        while random_nom1 == random_nom2:
+
+            random_nom2 = random.randrange(0, (len(possible_noms)))
+            print("check")
+        
+        noms.append(possible_noms[random_nom1])
+        noms.append(possible_noms[random_nom2])
+
+    def exactly_two_select(player, noms, hoh):
+        for player in hoh.relationships.keys():
+
+            if hoh.relationships[player] == lowest_relationship:
+
+                noms.append(player)
+
+    def exactly_one_select(player,noms,hoh):
+        for player in hoh.relationships.keys():
+
+            if hoh.relationships[player] == lowest_relationship:
+
+                noms.append(player)
+
+    if res == 2:
+
+        exactly_two_select(player,noms,hoh)
+        return noms
+
+    elif res > 1: 
+
+        multiple_lowest_select(player, noms, hoh)
+        return noms
+
+    elif res == 1:
+
+        exactly_one_select(player,noms,hoh)
+        
+        lowest_relationship += 1
+        res = lowest_list.count(lowest_relationship)
+
+        if res == 2:
+
+            exactly_two_select(player,noms,hoh)
+            return noms
+        
+        elif res > 1:
+
+            multiple_lowest_select(player,noms,hoh)
+            return noms
+
+        elif res == 1:
+
+            exactly_one_select(player,noms,hoh)
+            return noms
+
+
+
+
+
+print(HOH().name, " is the new HOH!")
+nominations = NOMS(HOH())
+print(nominations[0].name, "and", nominations[1].name, "have been nominated")
