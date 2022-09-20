@@ -1,3 +1,4 @@
+from operator import contains
 import random
 
 # Creates player object to be defined later
@@ -155,13 +156,13 @@ def NOMS(hoh):
     if num_of_lowest_relationships == 2:
 
         select_all_lowest(noms,hoh)
-        return noms
+        
 
     # Checks if there are more than one person with the lowest relationship value, calls appropriate function
     elif num_of_lowest_relationships > 1: 
 
         multiple_lowest_select(noms,hoh)
-        return noms
+        
 
     # Checks if there is exactly one person with the lowest relationship value, calls appropriate function
     elif num_of_lowest_relationships == 1:
@@ -179,22 +180,46 @@ def NOMS(hoh):
             if num_of_lowest_relationships == 2:
 
                 select_all_lowest(noms,hoh)
-                return noms
+                
             
             elif num_of_lowest_relationships > 1:
 
                 # Must call a different function to select only one second nomination (multiple_lowest_select ≠ after_one_select_multiple)
                 after_one_select_multiple(noms,hoh)
-                return noms
+                
 
             elif num_of_lowest_relationships == 1:
 
                 select_all_lowest(noms,hoh)
-                return noms
+                
+    for key in hoh.relationships.keys():
+        if key in noms:
+            hoh.relationships[key] -= 2
+        else:
+            hoh.relationships[key] += 1
+            
+    return noms
+
+
+
+
+
+
+
 
 
 # Function testing
-print(HOH().name, "is the new HOH!")
-nominations = NOMS(HOH())
-print(nominations[0].name, "and", nominations[1].name, "have been nominated")
+"""for x in range(5):
+    head_of_household = HOH()
+    print(head_of_household.name, "is the new HOH!")
+    nominations = NOMS(head_of_household)
+    print(nominations[0].name, "and", nominations[1].name, "have been nominated")
+    print("\n")"""
 
+# Testing nomination relationship updates
+"""head_of_household = HOH()
+print(head_of_household.relationships.values())
+print(head_of_household.name, "is the new HOH!")
+nominations = NOMS(head_of_household)
+print(nominations[0].name, "and", nominations[1].name, "have been nominated")
+print(head_of_household.relationships.values())"""
