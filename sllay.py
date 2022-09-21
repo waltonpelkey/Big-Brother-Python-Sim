@@ -75,30 +75,6 @@ def HOH():
         if ability_to_beat <= comp_ability_var:
             return player
 
-
-
-
-# Old (single) nomination function (waiting for approval from lead dev to delete)
-""" def NOM1(hoh):
-    lowest_relationship = min(hoh.relationships.values())
-    lowest_list=list(hoh.relationships.values())
-    res = lowest_list.count(lowest_relationship)
-    possible_noms = []
-
-    if res > 1:
-        for player in hoh.relationships.keys():
-            if hoh.relationships[player] == lowest_relationship:
-                possible_noms.append(player)
-        random_nom = random.randrange(0, (len(possible_noms) + 1))
-        return possible_noms[random_nom]
-    elif res == 1: 
-        for player in hoh.relationships.keys():
-            if hoh.relationships[player] == lowest_relationship:
-                return player """
-
-
-
-
 # Takes in the head of household and returns a list containing their two nominations based off relationship values
 def NOMS(hoh):
 
@@ -199,9 +175,8 @@ def NOMS(hoh):
             
     return noms
 
-
 # Takes in the head of household and two nominees and returns a list containing the hoh, noms, and three other players selected randommly
-def VETO_PICKS(hoh, noms):
+def VETO_PICKS(head_of_household, nominations):
 
     # # Finds the amount of people who share the highest relationship value of the HOH
     # highest_relationship = max(hoh.relationships.values())
@@ -219,8 +194,8 @@ def VETO_PICKS(hoh, noms):
     # num_of_highest_relationships = highest_list3.count(highest_relationship)
 
     # Creates lists to be used later in definitions
-    head_of_household = HOH()
-    nominations = NOMS(HOH())
+    
+
     possible_veto_picks = [player1, player2, player3, player4, player5, player6, player7, player8, player9, player10]
     unwanted_picks = {head_of_household, nominations[0], nominations[1]}
     possible_veto_picks = [ele for ele in possible_veto_picks if ele not in unwanted_picks] 
@@ -228,41 +203,20 @@ def VETO_PICKS(hoh, noms):
     playing_in_veto = [head_of_household, nominations[0], nominations[1]]
 
     # Function to do the first draw (HOH)
-    def hoh_veto_pick():
-        possible_veto_picks = [player1, player2, player3, player4, player5, player6, player7, player8, player9, player10]
-        unwanted_picks = {head_of_household, nominations[0], nominations[1]}
-        possible_veto_picks = [ele for ele in possible_veto_picks if ele not in unwanted_picks] 
-        
-        for player in possible_veto_picks:
+    def veto_pick():
 
-            random_veto_player1 = random.randrange(0, (len(possible_veto_picks)))
+        random_player_index = random.randrange(0, (len(possible_veto_picks)))
 
-            playing_in_veto.append(playing_in_veto[random_veto_player1])
-            possible_veto_picks.remove(random_veto_player1)
-            
-            def nom1_veto_pick():
-                
-                for player in possible_veto_picks:
+        playing_in_veto.append(possible_veto_picks[random_player_index])
+        possible_veto_picks.remove(possible_veto_picks[random_player_index])
 
-                    random_veto_player2 = random.randrange(0, (len(possible_veto_picks)))
-
-                    playing_in_veto.append(playing_in_veto[random_veto_player2])
-                    possible_veto_picks.remove(random_veto_player2)
-
-                    def nom2_veto_pick():
-
-                        for player in possible_veto_picks:
-
-                            random_veto_player3 = random.randrange(0, (len(possible_veto_picks)))
-
-                            playing_in_veto.append(playing_in_veto[random_veto_player3])
-                            possible_veto_picks.remove(random_veto_player3)
+    veto_pick()
+    veto_pick()
+    veto_pick()
+    
 
     
     return playing_in_veto
-
-print(VETO_PICKS(HOH(), NOMS(HOH())))
-0
 
 
 # Function testing
@@ -276,12 +230,14 @@ print(VETO_PICKS(HOH(), NOMS(HOH())))
 # Testing nomination relationship updates
 head_of_household = HOH()
 nominations = NOMS(head_of_household)
-# print(nominations[0].relationships.values())
-# print(nominations[1].relationships.values())
-# print(player5.relationships.values())
+veto_picks = VETO_PICKS(head_of_household, nominations)
+list = []
 print(head_of_household.name, "is the new HOH!")
 print(nominations[0].name, "and", nominations[1].name, "have been nominated!")
-# print(head_of_household.relationships.values())
+VETO_PICKS(head_of_household, nominations)
+for i in range(6):
+    list.append(veto_picks[i].name)
+print(list, " is playing in veto!")
 
 # possible_veto_picks = [player1, player2, player3, player4, player5,
 #      player6, player7, player8, player9, player10]
