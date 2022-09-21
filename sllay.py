@@ -193,12 +193,36 @@ def NOMS(hoh):
                 
     for key in hoh.relationships.keys():
         if key in noms:
-            hoh.relationships[key] -= 2
+            key.relationships[hoh] -= 2
         else:
-            hoh.relationships[key] += 1
+            key.relationships[hoh] += 1
             
     return noms
 
+
+# Takes in the head of household and two nominees and returns a list containing the hoh, noms, and three other players selected randommly
+def VETO_PICKS(hoh, noms):
+
+    # Finds the amount of people who share the highest relationship value of the HOH
+    highest_relationship = max(hoh.relationships.values())
+    highest_list1=list(hoh.relationships.values())
+    num_of_highest_relationships = highest_list1.count(highest_relationship)
+
+    # Finds the amount of people who share the highest relationship value of the first nominee
+    highest_relationship = max(nominations[0].relationships.values())
+    highest_list2=list(nominations[0].relationships.values())
+    num_of_highest_relationships = highest_list2.count(highest_relationship)
+
+    # Finds the amount of people who share the highest relationship value of the second nominee
+    highest_relationship = max(nominations[1].relationships.values())
+    highest_list3=list(nominations[1].relationships.values())
+    num_of_highest_relationships = highest_list3.count(highest_relationship)
+
+    # Creates lists to be used later in definitions
+    possible_veto_picks = list_of_players.remove(head_of_household)
+
+    # Function to do the first draw (HOH)
+    def hoh_veto_pick():
 
 
 
@@ -216,9 +240,11 @@ def NOMS(hoh):
     print("\n")"""
 
 # Testing nomination relationship updates
-"""head_of_household = HOH()
-print(head_of_household.relationships.values())
-print(head_of_household.name, "is the new HOH!")
+head_of_household = HOH()
 nominations = NOMS(head_of_household)
-print(nominations[0].name, "and", nominations[1].name, "have been nominated")
-print(head_of_household.relationships.values())"""
+# print(nominations[0].relationships.values())
+# print(nominations[1].relationships.values())
+# print(player5.relationships.values())
+print(head_of_household.name, "is the new HOH!")
+print(nominations[0].name, "and", nominations[1].name, "have been nominated!")
+# print(head_of_household.relationships.values())
