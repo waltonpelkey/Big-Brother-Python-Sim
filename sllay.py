@@ -31,7 +31,7 @@ player1 = Player("Paula", 1, "female", 1, {})
 player2 = Player("Anthony", 1, "male", 2, {})
 player3 = Player("Leonard", 1, "male", 3, {})
 player4 = Player("Krista", 1, "female", 4, {})
-player5 = Player("Nico", 1, "male", 5, {})
+player5 = Player("Nico", 1000000, "male", 5, {})
 player6 = Player("Alex", 1, "female", 6, {})
 player7 = Player("Izabella", 1, "female", 7, {})
 player8 = Player("Ken", 1, "other", 8, {})
@@ -248,3 +248,29 @@ print(list, " is playing in veto!")
 # print(VETO_PICKS(HOH(), NOMS(HOH())))
 
 # print(HOH().name, "and", nominations[0].name, "and", nominations[1].name, "and", random_veto_player1.name, "and", random_veto_player2.name, "and", random_veto_player3.name, "are competing in veto!")
+
+def VETO():
+
+    # Loop through list of players playing in veto, used to add comp abilities to randomize comp winner
+    VCOMPTOTAL = 0
+    for y in veto_picks:
+        VCOMPTOTAL += y.comp_ability
+        y.comp_prob = VCOMPTOTAL
+
+    # Randomly chooses a number between 1 and the total of everyones comp.abilities
+    # Uses the randomly generated number within the range to compare to the range that each comp ability enhabits and outputs the winner of the competition
+    ability_to_beat_others = random.randint(1, VCOMPTOTAL)
+    
+    for player in veto_picks:
+        comp_ability_var = 0
+        for index in range(0, veto_picks.index(player)+1):
+            comp_ability_var += veto_picks[index].comp_ability
+        if ability_to_beat_others <= comp_ability_var:
+            return player
+
+veto_winner = VETO()
+print(veto_winner.name, "is the winner of the veto!")
+
+# Nico def VETO_CEREMONY():
+
+    

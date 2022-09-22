@@ -13,7 +13,7 @@ TODO LIST:
   - When Houseguests Choice is chosen the player who drew it picks the person who they have the highest relationship with to compete in the challenge
   - When someone picks using Houseguests Choice the chosen player gets +1 relationship with the person who chose them
   - There is only one Houseguest Choice in the bag so it can only be selected once
-- [ ] Veto Competition
+- [x] Veto Competition
   - Same as the HOH where it totals all players comp abilities playing the veto and then picks a number between the range and associates that number with a winner.
   - This means we should probably at the Veto Draw ceremony define all the players in the competition within a list
 - [ ] Veto Ceremony
@@ -21,5 +21,5 @@ TODO LIST:
   - Cases
   - HOH:  
   - if the players on the block are their lowest two relationships the HOH wins the veto they will not change their nominations
-  - if there is a tie for lowest two relationships within the HOH's relationships then the HOH will randomly choose between changing the nomination or keeping it the same 50/50, if the HOH randomly chooses to change the nominations then it will randomly choose to replace 
+  - if there is a tie for lowest two relationships within the HOH's relationships then the HOH will randomly choose between changing the nomination or keeping it the same (50/50 chance of either occurance), if the HOH randomly chooses to change the nominations then it will randomly choose to replace the highest 
   - 
